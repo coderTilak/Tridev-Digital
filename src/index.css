@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Custom Base styles to ensure no-animations constraints and consistent background values */
+body {
+  font-family: var(--font-sans);
+  background-color: #FFFFFF;
+  color: #111827;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Static only, absolutely no animations as requested */
+* {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Make all buttons rounded (pill-shaped) globally */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"],
+.btn,
+.button {
+  border-radius: 9999px !important;
+}
+
+
