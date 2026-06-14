@@ -15,7 +15,9 @@ import {
   Employee
 } from '../types';
 
-const API_BASE_URL = 'https://tridev-digital.onrender.com';
+const API_BASE_URL = window.location.hostname === 'localhost'
+  ? ''
+  : 'https://tridev-digital.onrender.com';
 
 const getHeaders = () => {
   const token = localStorage.getItem('tridev_token');

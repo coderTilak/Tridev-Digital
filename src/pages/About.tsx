@@ -369,6 +369,7 @@ export default function About({ onNavigate, currentUser }: AboutProps) {
 
       {/* 3.5 Professional Team Segment (Dynamic and Manageable) - HIDDEN from public view */}
       {currentUser?.isAdmin && (
+        <>
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8" id="agency-team-section">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-zinc-200 pb-6">
           <div className="space-y-2">
@@ -762,7 +763,6 @@ export default function About({ onNavigate, currentUser }: AboutProps) {
         )}
       </section>
 
-      {/* 4. Why Choose Us Segment */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10" id="values-grid">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <h2 className="font-display text-3xl font-bold text-gray-900">Agency Working Standards</h2>
@@ -815,7 +815,7 @@ export default function About({ onNavigate, currentUser }: AboutProps) {
         </div>
 
         </section>
-      )}
+        </>
       )}
       {/* Supabase SQL and setup tutorial modal */}
       {showSqlGuide && dbConfig && (
@@ -891,10 +891,9 @@ export default function About({ onNavigate, currentUser }: AboutProps) {
                     onClick={() => {
                       navigator.clipboard.writeText(dbConfig.tutorialScript);
                       alert("SQL Script successfully copied to clipboard!");
+                    }}
+                    className="px-3 py-1.5 bg-black text-white text-[10px] font-mono font-bold uppercase hover:bg-zinc-800 cursor-pointer"
                   >
-                    )}
-                  </section>
-                  )}
                     Copy SQL Code
                   </button>
                 </div>
