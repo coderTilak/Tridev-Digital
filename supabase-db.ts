@@ -155,8 +155,8 @@ CREATE POLICY "Allow All Public Employees" ON employees FOR ALL TO public USING 
 
 INSERT INTO users (id, email, password_hash, full_name, phone_number, company_name, is_admin)
 VALUES 
-('admin-1', 'tilak@tridevdigital.com', 'admin123', 'Tilak Kanojiya', '9812453147', 'Tridev Digital', TRUE),
-('user-1', 'client@example.com', 'client123', 'Sanjay Sharma', '9848011223', 'Lumbini Bakery', FALSE)
+('admin-1', 'tilak@tridevdigital.com', 'CHANGE_ME_ADMIN_PASSWORD', 'Tilak Kanojiya', '9812453147', 'Tridev Digital', TRUE),
+('user-1', 'client@example.com', 'CHANGE_ME_CLIENT_PASSWORD', 'Sanjay Sharma', '9848011223', 'Lumbini Bakery', FALSE)
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO services (id, title, subtitle, starting_price, features, type)
