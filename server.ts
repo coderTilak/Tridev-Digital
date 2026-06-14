@@ -54,9 +54,10 @@ async function startServer() {
       // Dynamic master check for admin users and specific UUIDs or email strings
       const userEmailLower = (profile.email || '').toLowerCase();
       if (
-        profile.id === '4ff35d7f-125b-4f98-a398-f947290ac32f' ||
+        profile.id === 'aac19595-9660-4545-b609-d3ead95464de' ||
         userEmailLower === 'sunbeamschool077@gmail.com' ||
         userEmailLower === 'tilak@tridevdigital.com' ||
+        userEmailLower === 'tilakkanojiya311@gmail.com' ||
         userEmailLower.includes('admin')
       ) {
         profile.isAdmin = true;
@@ -151,8 +152,9 @@ async function startServer() {
             const isAdmin = 
               sEmail.toLowerCase() === 'sunbeamschool077@gmail.com' ||
               sEmail.toLowerCase() === 'tilak@tridevdigital.com' ||
+              sEmail.toLowerCase() === 'tilakkanojiya311@gmail.com' ||
               sEmail.toLowerCase().includes('admin') ||
-              sUser.id === '4ff35d7f-125b-4f98-a398-f947290ac32f' ||
+              sUser.id === 'aac19595-9660-4545-b609-d3ead95464de' ||
               sUser.app_metadata?.role === 'admin' ||
               sUser.app_metadata?.is_admin === true ||
               sUser.user_metadata?.is_admin === true ||
