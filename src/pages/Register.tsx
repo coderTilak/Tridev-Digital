@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { UserPlus, Sparkles, AlertCircle, Phone, HelpCircle } from 'lucide-react';
+import { UserPlus, Sparkles, AlertCircle, Phone, HelpCircle, Eye, EyeOff } from 'lucide-react';
 import { UserProfile } from '../types';
 import { api } from '../lib/api';
 
@@ -19,6 +19,7 @@ export default function Register({ onNavigate, onRegisterSuccess }: RegisterProp
   const [phoneNumber, setPhoneNumber] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -128,14 +129,24 @@ export default function Register({ onNavigate, onRegisterSuccess }: RegisterProp
           <label className="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">
             Choose Secure Password <span className="text-[#E10600]">*</span>
           </label>
-          <input
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="••••••••"
-            className="w-full h-10 px-3 border border-gray-300 focus:outline-none focus:border-[#E10600] text-sm bg-gray-50"
-          />
+          <div className="relative">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              className="w-full h-10 px-3 pr-10 border border-gray-300 focus:outline-none focus:border-[#E10600] text-sm bg-gray-50"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#E10600] cursor-pointer p-1"
+              tabIndex={-1}
+            >
+              {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+            </button>
+          </div>
         </div>
 
         <div className="bg-[#00C853]/5 border border-[#00C853]/30 p-3 text-[11px] text-[#00C853] flex gap-2">
