@@ -367,8 +367,9 @@ export default function About({ onNavigate, currentUser }: AboutProps) {
         </div>
       </section>
 
-      {/* 3.5 Professional Team Segment (Dynamic and Manageable) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8" id="agency-team-section">
+      {/* 3.5 Professional Team Segment (Dynamic and Manageable) - HIDDEN from public view */}
+      {currentUser?.isAdmin && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8" id="agency-team-section">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-zinc-200 pb-6">
           <div className="space-y-2">
             <span className="text-[10px] uppercase font-mono tracking-widest bg-black text-white px-2.5 py-1 font-bold">
@@ -812,8 +813,10 @@ export default function About({ onNavigate, currentUser }: AboutProps) {
             </button>
           </div>
         </div>
-      </section>
 
+        </section>
+      )}
+      )}
       {/* Supabase SQL and setup tutorial modal */}
       {showSqlGuide && dbConfig && (
         <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
@@ -888,9 +891,10 @@ export default function About({ onNavigate, currentUser }: AboutProps) {
                     onClick={() => {
                       navigator.clipboard.writeText(dbConfig.tutorialScript);
                       alert("SQL Script successfully copied to clipboard!");
-                    }}
-                    className="text-xs font-mono font-bold text-[#E10600] hover:underline cursor-pointer"
                   >
+                    )}
+                  </section>
+                  )}
                     Copy SQL Code
                   </button>
                 </div>
