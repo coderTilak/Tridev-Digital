@@ -15,6 +15,8 @@ import {
   Employee
 } from '../types';
 
+const API_BASE_URL = 'https://tridev-digital.onrender.com';
+
 const getHeaders = () => {
   const token = localStorage.getItem('tridev_token');
   const headers: HeadersInit = {
@@ -29,7 +31,7 @@ const getHeaders = () => {
 export const api = {
   // Auth
   async login(email: string, password: string) {
-    const res = await fetch('/api/auth/login', {
+    const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
@@ -42,7 +44,7 @@ export const api = {
   },
 
   async register(email: string, passwordHash: string, fullName: string, phoneNumber: string, companyName?: string) {
-    const res = await fetch('/api/auth/register', {
+    const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password: passwordHash, fullName, phoneNumber, companyName }),
@@ -70,7 +72,7 @@ export const api = {
   },
 
   async updateProfile(fullName: string, phoneNumber: string, companyName?: string) {
-    const res = await fetch('/api/auth/profile', {
+    const res = await fetch(`${API_BASE_URL}/api/auth/profile`, {
       method: 'PUT',
       headers: getHeaders(),
       body: JSON.stringify({ fullName, phoneNumber, companyName }),
@@ -83,7 +85,7 @@ export const api = {
 
   // Inquiries
   async getInquiries() {
-    const res = await fetch('/api/inquiries', { headers: getHeaders() });
+    const res = await fetch(`${API_BASE_URL}/api/inquiries`, { headers: getHeaders() });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Failed to fetch inquiries');
     return data as Inquiry[];
@@ -98,7 +100,7 @@ export const api = {
     budgetRange: string;
     projectDescription: string;
   }) {
-    const res = await fetch('/api/inquiries', {
+    const res = await fetch(`${API_BASE_URL}/api/inquiries`, {
       method: 'POST',
       headers: getHeaders(),
       body: JSON.stringify(data),
@@ -109,7 +111,7 @@ export const api = {
   },
 
   async updateInquiryStatus(id: string, status: InquiryStatus, adminRemarks?: string) {
-    const res = await fetch(`/api/inquiries/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/inquiries/${id}`, {
       method: 'PUT',
       headers: getHeaders(),
       body: JSON.stringify({ status, adminRemarks }),
@@ -120,7 +122,7 @@ export const api = {
   },
 
   async deleteInquiry(id: string) {
-    const res = await fetch(`/api/inquiries/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/inquiries/${id}`, {
       method: 'DELETE',
       headers: getHeaders(),
     });
@@ -131,12 +133,12 @@ export const api = {
 
   // Services
   async getServices() {
-    const res = await fetch('/api/services');
+    const res = await fetch(`${API_BASE_URL}/api/services`);
     return (await res.json()) as ServiceDetail[];
   },
 
   async createService(data: Omit<ServiceDetail, 'id'>) {
-    const res = await fetch('/api/services', {
+    const res = await fetch(`${API_BASE_URL}/api/services`, {
       method: 'POST',
       headers: getHeaders(),
       body: JSON.stringify(data),
@@ -147,7 +149,7 @@ export const api = {
   },
 
   async updateService(id: string, data: Partial<Omit<ServiceDetail, 'id'>>) {
-    const res = await fetch(`/api/services/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/services/${id}`, {
       method: 'PUT',
       headers: getHeaders(),
       body: JSON.stringify(data),
@@ -158,7 +160,7 @@ export const api = {
   },
 
   async deleteService(id: string) {
-    const res = await fetch(`/api/services/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/services/${id}`, {
       method: 'DELETE',
       headers: getHeaders(),
     });
@@ -169,12 +171,12 @@ export const api = {
 
   // Portfolio
   async getPortfolio() {
-    const res = await fetch('/api/portfolio');
+    const res = await fetch(`${API_BASE_URL}/api/portfolio`);
     return (await res.json()) as PortfolioItem[];
   },
 
   async createPortfolioItem(data: Omit<PortfolioItem, 'id'>) {
-    const res = await fetch('/api/portfolio', {
+    const res = await fetch(`${API_BASE_URL}/api/portfolio`, {
       method: 'POST',
       headers: getHeaders(),
       body: JSON.stringify(data),
@@ -185,7 +187,7 @@ export const api = {
   },
 
   async updatePortfolioItem(id: string, data: Partial<Omit<PortfolioItem, 'id'>>) {
-    const res = await fetch(`/api/portfolio/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/portfolio/${id}`, {
       method: 'PUT',
       headers: getHeaders(),
       body: JSON.stringify(data),
@@ -196,7 +198,7 @@ export const api = {
   },
 
   async deletePortfolioItem(id: string) {
-    const res = await fetch(`/api/portfolio/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/portfolio/${id}`, {
       method: 'DELETE',
       headers: getHeaders(),
     });
@@ -207,12 +209,12 @@ export const api = {
 
   // Marketing Packages
   async getMarketingPackages() {
-    const res = await fetch('/api/marketing');
+    const res = await fetch(`${API_BASE_URL}/api/marketing`);
     return (await res.json()) as MarketingPackage[];
   },
 
   async createMarketingPackage(data: Omit<MarketingPackage, 'id'>) {
-    const res = await fetch('/api/marketing', {
+    const res = await fetch(`${API_BASE_URL}/api/marketing`, {
       method: 'POST',
       headers: getHeaders(),
       body: JSON.stringify(data),
@@ -223,7 +225,7 @@ export const api = {
   },
 
   async updateMarketingPackage(id: string, data: Partial<Omit<MarketingPackage, 'id'>>) {
-    const res = await fetch(`/api/marketing/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/marketing/${id}`, {
       method: 'PUT',
       headers: getHeaders(),
       body: JSON.stringify(data),
@@ -234,7 +236,7 @@ export const api = {
   },
 
   async deleteMarketingPackage(id: string) {
-    const res = await fetch(`/api/marketing/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/marketing/${id}`, {
       method: 'DELETE',
       headers: getHeaders(),
     });
@@ -245,7 +247,7 @@ export const api = {
 
   // Contacts
   async submitContactMessage(fullName: string, email: string, phoneNumber: string, message: string) {
-    const res = await fetch('/api/contact', {
+    const res = await fetch(`${API_BASE_URL}/api/contact`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ fullName, email, phoneNumber, message }),
@@ -256,14 +258,14 @@ export const api = {
   },
 
   async getContactMessages() {
-    const res = await fetch('/api/contact', { headers: getHeaders() });
+    const res = await fetch(`${API_BASE_URL}/api/contact`, { headers: getHeaders() });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Failed to fetch contact messages');
     return data as ContactMessage[];
   },
 
   async updateContactMessageStatus(id: string, status: 'Unread' | 'Read' | 'Resolved') {
-    const res = await fetch(`/api/contact/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/contact/${id}`, {
       method: 'PUT',
       headers: getHeaders(),
       body: JSON.stringify({ status }),
@@ -274,7 +276,7 @@ export const api = {
   },
 
   async deleteContactMessage(id: string) {
-    const res = await fetch(`/api/contact/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/contact/${id}`, {
       method: 'DELETE',
       headers: getHeaders(),
     });
@@ -285,7 +287,7 @@ export const api = {
 
   // Users Table
   async getUsers() {
-    const res = await fetch('/api/users', { headers: getHeaders() });
+    const res = await fetch(`${API_BASE_URL}/api/users`, { headers: getHeaders() });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Failed to fetch users list');
     return data as UserProfile[];
@@ -293,7 +295,7 @@ export const api = {
 
   // Analytics
   async getAnalytics() {
-    const res = await fetch('/api/analytics', { headers: getHeaders() });
+    const res = await fetch(`${API_BASE_URL}/api/analytics`, { headers: getHeaders() });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Failed to load analytics dashboard');
     return data as {
@@ -307,7 +309,7 @@ export const api = {
 
   // Db Status & Setup Tutorial
   async getDbConfig() {
-    const res = await fetch('/api/db-config');
+    const res = await fetch(`${API_BASE_URL}/api/db-config`);
     return await res.json() as {
       configured: boolean;
       type: string;
@@ -319,14 +321,14 @@ export const api = {
 
   // Employees List CRUD
   async getEmployees() {
-    const res = await fetch('/api/employees');
+    const res = await fetch(`${API_BASE_URL}/api/employees`);
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Failed to fetch team list');
     return data as Employee[];
   },
 
   async createEmployee(data: Omit<Employee, 'id'>) {
-    const res = await fetch('/api/employees', {
+    const res = await fetch(`${API_BASE_URL}/api/employees`, {
       method: 'POST',
       headers: getHeaders(),
       body: JSON.stringify(data)
@@ -337,7 +339,7 @@ export const api = {
   },
 
   async updateEmployee(id: string, data: Partial<Omit<Employee, 'id'>>) {
-    const res = await fetch(`/api/employees/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/employees/${id}`, {
       method: 'PUT',
       headers: getHeaders(),
       body: JSON.stringify(data)
@@ -348,7 +350,7 @@ export const api = {
   },
 
   async deleteEmployee(id: string) {
-    const res = await fetch(`/api/employees/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/employees/${id}`, {
       method: 'DELETE',
       headers: getHeaders()
     });
@@ -358,7 +360,7 @@ export const api = {
   },
 
   async resetEmployees(defaultEmployees: Employee[]) {
-    const res = await fetch('/api/employees/reset', {
+    const res = await fetch(`${API_BASE_URL}/api/employees/reset`, {
       method: 'POST',
       headers: getHeaders(),
       body: JSON.stringify({ defaultEmployees })
