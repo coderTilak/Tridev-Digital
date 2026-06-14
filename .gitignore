@@ -8,3 +8,5 @@ coverage/
 !.env.example
 .env.local
 data/
+README.md
+
