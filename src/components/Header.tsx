@@ -6,6 +6,7 @@
 import React, { useState } from 'react';
 import { Layers, LogOut, Menu, X, User, Briefcase } from 'lucide-react';
 import { UserProfile } from '../types';
+import tridevLogo from '../assets/images/tridev_logo_1781250740712.jpg';
 
 interface HeaderProps {
   currentPath: string;
@@ -42,7 +43,7 @@ export default function Header({ currentPath, onNavigate, currentUser, onLogout 
           {/* Logo Brand */}
           <div className="flex items-center space-x-2 cursor-pointer" onClick={() => handleItemClick('/')} id="brand-logo">
             <img 
-              src="/src/assets/images/tridev_logo_1781250740712.jpg"
+              src={tridevLogo}
               alt="TRIDEV Logo"
               className="h-10 w-10 object-cover rounded-none"
               referrerPolicy="no-referrer"
