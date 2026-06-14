@@ -234,6 +234,32 @@ async function startServer() {
     }
   });
 
+  // Auth: Forgot / Reset Password
+  app.post('/api/auth/reset-password', async (req, res) => {
+    try {
+      const { email } = req.body;
+      if (!email) {
+        res.status(400).json({ error: 'Email address is required' });
+        return;
+      }
+
+      if (hasSupabaseConfig && supabase) {
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: `${req.protocol}://${req.get('host')}/login`,
+        });
+        if (error) {
+          res.status(400).json({ error: error.message });
+          return;
+        }
+        res.json({ message: 'Password reset email sent. Check your inbox.' });
+      } else {
+        res.status(400).json({ error: 'Password reset is only available when Supabase is configured.' });
+      }
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   // Auth: Me profile
   app.get('/api/auth/me', requireAuth, (req: AuthenticatedRequest, res) => {
     res.json({ user: req.user });

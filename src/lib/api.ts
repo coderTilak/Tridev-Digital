@@ -63,6 +63,17 @@ export const api = {
     localStorage.removeItem('tridev_user');
   },
 
+  async resetPassword(email: string) {
+    const res = await fetch(`${API_BASE_URL}/api/auth/reset-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed to send reset email');
+    return data as { message: string };
+  },
+
   getCurrentUser(): UserProfile | null {
     const userStr = localStorage.getItem('tridev_user');
     if (!userStr) return null;
