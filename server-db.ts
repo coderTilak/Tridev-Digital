@@ -162,7 +162,7 @@ function initDB() {
         {
           id: 'admin-1',
           email: 'tilak@tridevdigital.com',
-          passwordHash: 'admin123', // Hardcoded simple lookup format
+          passwordHash: process.env.SEED_ADMIN_PASSWORD || 'changeme', // from env
           fullName: 'Tilak Kanojiya',
           phoneNumber: '9812453147',
           companyName: 'Tridev Digital',
@@ -171,7 +171,7 @@ function initDB() {
         {
           id: 'user-1',
           email: 'client@example.com',
-          passwordHash: 'client123',
+          passwordHash: process.env.SEED_CLIENT_PASSWORD || 'changeme',
           fullName: 'Sanjay Sharma',
           phoneNumber: '9848011223',
           companyName: 'Lumbini Bakery',
