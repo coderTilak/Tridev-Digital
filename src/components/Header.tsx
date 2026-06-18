@@ -87,7 +87,7 @@ export default function Header({ currentPath, onNavigate, currentUser, onLogout 
                   }`}
                 >
                   {currentUser.isAdmin ? (
-                      
+                    <>
                       <Briefcase className="h-3.5 w-3.5" />
                       Admin Suite
                     </>
