@@ -37,7 +37,7 @@ const DEFAULT_EMPLOYEES = [
   },
   { 
     id: "emp-002", 
-    name: "Aryan Rajbashi", 
+    name: "Aryan Rajbanshi", 
     role: "Project Manager", 
     post: "Project Manager",
     phoneNumber: "9769277257",

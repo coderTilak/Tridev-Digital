@@ -278,7 +278,7 @@ export default function About({ onNavigate, currentUser }: AboutProps) {
               {/* Card 2: Aryan Rajbashi */}
               <div className="bg-zinc-50/50 border border-zinc-200 p-6 space-y-4">
                 <div className="space-y-1">
-                  <h3 className="font-display text-lg font-bold text-gray-950">Aryan Rajbashi</h3>
+                  <h3 className="font-display text-lg font-bold text-gray-950">Aryan Rajbanshi</h3>
                   <p className="text-[11px] uppercase tracking-wider font-mono text-zinc-900 font-bold">Project Manager</p>
                 </div>
                 <div className="border-t border-zinc-200 pt-3 space-y-2 font-mono text-xs">
